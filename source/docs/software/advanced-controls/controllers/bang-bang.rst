@@ -19,6 +19,11 @@ Since a bang-bang controller does not have any gains, it does not need any const
   BangBangController controller = new BangBangController();
   ```
 
+  ```kotlin
+  // Creates a BangBangController
+  val controller = BangBangController()
+  ```
+
   ```c++
   // Creates a BangBangController
   frc::BangBangController controller;
@@ -29,6 +34,8 @@ Since a bang-bang controller does not have any gains, it does not need any const
     # Creates a BangBangController
   controller = BangBangController()
   ```
+
+  
 
 ## Using a BangBangController
 
@@ -43,6 +50,11 @@ Using a bang-bang controller is easy:
   motor.set(controller.calculate(encoder.getRate(), setpoint));
   ```
 
+  ```kotlin
+  // Controls a motor with the output of the BangBang controller
+  motor.set(controller.calculate(encoder.rate, setpoint))
+  ```
+
   ```c++
   // Controls a motor with the output of the BangBang controller
   motor.Set(controller.Calculate(encoder.GetRate(), setpoint));
@@ -52,6 +64,8 @@ Using a bang-bang controller is easy:
   # Controls a motor with the output of the BangBang controller
   motor.set(controller.calculate(encoder.getRate(), setpoint))
   ```
+
+  
 
 ## Combining Bang Bang Control with Feedforward
 
@@ -64,6 +78,11 @@ Like a PID controller, best results are obtained in conjunction with a :ref:`fee
   // Shrinks the feedforward slightly to avoid overspeeding the shooter
   motor.setVoltage(controller.calculate(encoder.getRate(), setpoint) * 12.0 + 0.9 * feedforward.calculate(setpoint));
   ```
+
+  ```kotlin
+  // Controls a motor with the output of the BangBang controller and a feedforward
+  // Shrinks the feedforward slightly to avoid overspeeding the shooter
+  motor.setVoltage(controller.calculate(encoder.rate, setpoint) * 12.0 + 0.9 * feedforward.calculate(setpoint))
 
   ```c++
   // Controls a motor with the output of the BangBang controller and a feedforward
