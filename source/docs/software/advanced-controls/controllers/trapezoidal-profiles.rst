@@ -31,6 +31,13 @@ In order to create a trapezoidal motion profile, we must first impose some const
   new TrapezoidProfile.Constraints(10, 20);
   ```
 
+  ```kotlin
+  // Creates a new set of trapezoidal motion profile constraints
+  // Max velocity of 10 meters per second
+  // Max acceleration of 20 meters per second squared
+  TrapezoidProfile.Constraints(10, 20)
+  ```
+
   ```c++
   // Creates a new set of trapezoidal motion profile constraints
   // Max velocity of 10 meters per second
@@ -56,6 +63,12 @@ Next, we must specify the desired starting and ending states for our mechanisms 
   // Creates a new state with a position of 5 meters
   // and a velocity of 0 meters per second
   new TrapezoidProfile.State(5, 0);
+  ```
+
+  ```kotlin
+  // Creates a new state with a position of 5 meters
+  // and a velocity of 0 meters per second
+  TrapezoidProfile.State(5, 0)
   ```
 
   ```c++
@@ -84,6 +97,13 @@ Now that we know how to create a set of constraints and the desired start/end st
   // Profile will have a max vel of 5 meters per second
   // Profile will have a max acceleration of 10 meters per second squared
   TrapezoidProfile profile = new TrapezoidProfile(new TrapezoidProfile.Constraints(5, 10));
+  ```
+
+  ```kotlin
+  // Creates a new TrapezoidProfile
+  // Profile will have a max vel of 5 meters per second
+  // Profile will have a max acceleration of 10 meters per second squared
+  val profile = TrapezoidProfile(TrapezoidProfile.Constraints(5, 10))
   ```
 
   ```c++
@@ -117,6 +137,13 @@ Once we've created a ``TrapezoidProfile``, using it is very simple: to get the p
   profile.calculate(5, new TrapezoidProfile.State(0, 0), new TrapezoidProfile.State(5, 0));
   ```
 
+  ```kotlin
+  // Profile will start stationary at zero position
+  // Profile will end stationary at 5 meters
+  // Returns the motion profile state after 5 seconds of motion
+  profile.calculate(5, TrapezoidProfile.State(0, 0), TrapezoidProfile.State(5, 0))
+  ```
+
   ```c++
   // Profile will start stationary at zero position
   // Profile will end stationary at 5 meters
@@ -142,6 +169,11 @@ The ``calculate`` method returns a ``TrapezoidProfile.State`` class (the same on
   ```java
   var setpoint = profile.calculate(elapsedTime, initialState, goalState);
   controller.calculate(encoder.getDistance(), setpoint.position);
+  ```
+
+  ```kotlin
+  val setpoint = profile.calculate(elapsedTime, initialState, goalState)
+  controller.calculate(encoder.distance, setpoint.position)
   ```
 
   ```c++

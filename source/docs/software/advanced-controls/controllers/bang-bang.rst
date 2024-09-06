@@ -35,8 +35,6 @@ Since a bang-bang controller does not have any gains, it does not need any const
   controller = BangBangController()
   ```
 
-  
-
 ## Using a BangBangController
 
 .. warning:: Bang-bang control is an extremely aggressive algorithm that relies on response asymmetry to remain stable.  Be *absolutely certain* that your motor controllers have been set to "coast mode" before attempting to control them with a bang-bang controller, or else the braking action will fight the controller and cause potentially destructive oscillation.
@@ -64,8 +62,6 @@ Using a bang-bang controller is easy:
   # Controls a motor with the output of the BangBang controller
   motor.set(controller.calculate(encoder.getRate(), setpoint))
   ```
-
-  
 
 ## Combining Bang Bang Control with Feedforward
 

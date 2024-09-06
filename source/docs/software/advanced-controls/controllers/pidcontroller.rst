@@ -21,6 +21,11 @@ In order to use WPILib's PID control functionality, users must first construct a
   PIDController pid = new PIDController(kP, kI, kD);
   ```
 
+  ```kotlin
+  // Creates a PIDController with gains kP, kI, and kD
+  val pid = PIDController(kP, kI, kD)
+  ```
+
   ```c++
   // Creates a PIDController with gains kP, kI, and kD
   frc::PIDController pid{kP, kI, kD};
@@ -46,6 +51,12 @@ Using the constructed ``PIDController`` is simple: simply call the ``calculate()
   // Calculates the output of the PID algorithm based on the sensor reading
   // and sends it to a motor
   motor.set(pid.calculate(encoder.getDistance(), setpoint));
+  ```
+
+  ```kotlin
+  // Calculates the output of the PID algorithm based on the sensor reading
+  // and sends it to a motor
+  motor.set(pid.calculate(encoder.distance, setpoint))
   ```
 
   ```c++
@@ -88,6 +99,15 @@ To do this, we first must specify the tolerances with the ``setTolerance()`` met
   pid.atSetpoint();
   ```
 
+  ```kotlin
+  // Sets the error tolerance to 5, and the error derivative tolerance to 10 per second
+  pid.setTolerance(5, 10)
+  // Or to set it on initialization
+  val pid = PIDController(kP, kI, kD).apply { setTolerance(5, 10) }
+  // Returns true if the error is less than 5 units, and the
+  // error derivative is less than 10 units
+  ```
+
   ```c++
   // Sets the error tolerance to 5, and the error derivative tolerance to 10 per second
   pid.SetTolerance(5, 10);
@@ -126,6 +146,14 @@ The range limits may be increased or decreased using the ``setIntegratorRange()`
   pid.setIntegratorRange(-0.5, 0.5);
   ```
 
+  ```kotlin
+  // The integral gain term will never add or subtract more than 0.5 from
+  // the total loop output
+  pid.setIntegratorRange(-0.5, 0.5)
+  // Or to set it on initialization
+  val pid = PIDController(kP, kI, kD).apply { setIntegratorRange(-0.5, 0.5) }
+  ```
+
   ```c++
   // The integral gain term will never add or subtract more than 0.5 from
   // the total loop output
@@ -154,6 +182,16 @@ By default, ``IZone`` is disabled.
     // Integral gain will not be applied if the absolute value of the error is
   // more than 2
   pid.setIZone(2);
+  ```
+
+  ```kotlin
+  // Disable IZone
+  pid.iZone = Double.POSITIVE_INFINITY
+  // Integral gain will not be applied if the absolute value of the error is
+  // more than 2
+  pid.iZone = 2
+  // Or to set it on initialization
+  val pid = PIDController(kP, kI, kD).apply { iZone = 2 }
   ```
 
   ```c++
@@ -187,6 +225,14 @@ To configure a ``PIDController`` to automatically do this, use the ``enableConti
   pid.enableContinuousInput(-180, 180);
   ```
 
+  ```kotlin
+  // Enables continuous input on a range from -180 to 180
+  pid.enableContinuousInput(-180, 180)
+  // Or to set it on initialization
+  val pid = PIDController(kP, kI, kD).apply { enableContinuousInput(-180, 180) }
+  ```
+
+
   ```c++
   // Enables continuous input on a range from -180 to 180
   pid.EnableContinuousInput(-180, 180);
@@ -204,6 +250,11 @@ To configure a ``PIDController`` to automatically do this, use the ``enableConti
   ```java
   // Clamps the controller output to between -0.5 and 0.5
   MathUtil.clamp(pid.calculate(encoder.getDistance(), setpoint), -0.5, 0.5);
+  ```
+
+  ```kotlin
+  // Clamps the controller output to between -0.5 and 0.5
+  MathUtil.clamp(pid.calculate(encoder.distance, setpoint), -0.5, 0.5)
   ```
 
   ```c++

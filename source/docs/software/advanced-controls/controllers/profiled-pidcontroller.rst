@@ -30,6 +30,15 @@ Creating a ``ProfiledPIDController`` is nearly identical to :ref:`creating a PID
     new TrapezoidProfile.Constraints(5, 10));
   ```
 
+  ```kotlin
+  // Creates a ProfiledPIDController
+  // Max velocity is 5 meters per second
+  // Max acceleration is 10 meters per second
+  val controller = ProfiledPIDController(
+    kP, kI, kD,
+    TrapezoidProfile.Constraints(5, 10))
+  ```
+
   ```c++
   // Creates a ProfiledPIDController
   // Max velocity is 5 meters per second
@@ -60,6 +69,12 @@ A major difference between a standard ``PIDController`` and a ``ProfiledPIDContr
   // Calculates the output of the PID algorithm based on the sensor reading
   // and sends it to a motor
   motor.set(controller.calculate(encoder.getDistance(), goal));
+  ```
+
+  ```kotlin
+  // Calculates the output of the PID algorithm based on the sensor reading
+  // and sends it to a motor
+  motor.set(controller.calculate(encoder.distance, goal))
   ```
 
   ```c++
@@ -97,6 +112,23 @@ The returned setpoint might then be used as in the following example:
         + feedforward.calculate(controller.getSetpoint().velocity, acceleration));
     lastSpeed = controller.getSetpoint().velocity;
     lastTime = Timer.getFPGATimestamp();
+  }
+  ```
+
+  ```kotlin
+  var lastSpeed = 0.0
+  var lastTime = Timer.getFPGATimestamp()
+
+  // Controls a simple motor's position using a SimpleMotorFeedforward
+  // and a ProfiledPIDController
+  fun goToPosition(goalPosition: Double) {
+    val pidVal = controller.calculate(encoder.distance, goalPosition)
+    val acceleration = (controller.setpoint.velocity - lastSpeed) / (Timer.getFPGATimestamp() - lastTime)
+    motor.setVoltage(
+        pidVal + feedforward.calculate(controller.setpoint.velocity, acceleration)
+    )
+    lastSpeed = controller.setpoint.velocity
+    lastTime = Timer.getFPGATimestamp()
   }
   ```
 

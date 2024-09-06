@@ -41,6 +41,11 @@ To create a ``SimpleMotorFeedforward``, simply construct it with the required ga
   SimpleMotorFeedforward feedforward = new SimpleMotorFeedforward(kS, kV, kA);
   ```
 
+  ```kotlin
+  // Create a new SimpleMotorFeedforward with gains kS, kV, and kA
+  val feedforward = SimpleMotorFeedforward(kS, kV, kA)
+  ```
+
   ```c++
   // Create a new SimpleMotorFeedforward with gains kS, kV, and kA
   // Distance is measured in meters
@@ -64,6 +69,12 @@ To calculate the feedforward, simply call the ``calculate()`` method with the de
   // Calculates the feedforward for a velocity of 10 units/second and an acceleration of 20 units/second^2
   // Units are determined by the units of the gains passed in at construction.
   feedforward.calculate(10, 20);
+  ```
+
+  ```kotlin
+  // Calculates the feedforward for a velocity of 10 units/second and an acceleration of 20 units/second^2
+  // Units are determined by the units of the gains passed in at construction.
+  feedforward.calculate(10, 20)
   ```
 
   ```c++
@@ -99,6 +110,11 @@ To create an ``ArmFeedforward``, simply construct it with the required gains:
   ArmFeedforward feedforward = new ArmFeedforward(kS, kG, kV, kA);
   ```
 
+  ```kotlin
+  // Create a new ArmFeedforward with gains kS, kG, kV, and kA
+  val feedforward = ArmFeedforward(kS, kG, kV, kA)
+  ```
+
   ```c++
   // Create a new ArmFeedforward with gains kS, kG, kV, and kA
   frc::ArmFeedforward feedforward(kS, kG, kV, kA);
@@ -121,6 +137,13 @@ To calculate the feedforward, simply call the ``calculate()`` method with the de
   // an acceleration of 3 units/second^2
   // Units are determined by the units of the gains passed in at construction.
   feedforward.calculate(1, 2, 3);
+  ```
+
+  ```kotlin
+  // Calculates the feedforward for a position of 1 units, a velocity of 2 units/second, and
+  // an acceleration of 3 units/second^2
+  // Units are determined by the units of the gains passed in at construction.
+  feedforward.calculate(1, 2, 3)
   ```
 
   ```c++
@@ -156,6 +179,11 @@ To create a ``ElevatorFeedforward``, simply construct it with the required gains
   ```java
   // Create a new ElevatorFeedforward with gains kS, kG, kV, and kA
   ElevatorFeedforward feedforward = new ElevatorFeedforward(kS, kG, kV, kA);
+  ```
+
+  ```kotlin
+  // Create a new ElevatorFeedforward with gains kS, kG, kV, and kA
+  val feedforward = ElevatorFeedforward(kS, kG, kV, kA)
   ```
 
   ```c++
@@ -211,6 +239,13 @@ Feedforward control can be used entirely on its own, without a feedback controll
     leftMotor.setVoltage(feedforward.calculate(leftVelocity));
     rightMotor.setVoltage(feedForward.calculate(rightVelocity));
   }
+  ```
+
+  ```kotlin
+    fun tankDriveWithFeedforward(leftVelocity: Double, rightVelocity: Double) {
+        leftMotor.setVoltage(feedforward.calculate(leftVelocity))
+        rightMotor.setVoltage(feedForward.calculate(rightVelocity))
+    }
   ```
 
   ```c++

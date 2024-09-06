@@ -19,6 +19,11 @@ Users may add any feedforward they like to the output of the controller before s
   motor.setVoltage(pid.calculate(encoder.getDistance(), setpoint) + feedforward);
   ```
 
+  ```kotlin
+    // Adds a feedforward to the loop output before sending it to the motor
+    motor.setVoltage(pid.calculate(encoder.distance, setpoint) + feedforward)
+  ```
+
   ```c++
   // Adds a feedforward to the loop output before sending it to the motor
   motor.SetVoltage(pid.Calculate(encoder.GetDistance(), setpoint) + feedforward);
@@ -47,6 +52,16 @@ What might a more complete example of combined feedforward/PID control look like
         + rightPID.calculate(rightEncoder.getRate(), rightVelocitySetpoint));
   }
   ```
+
+  ```kotlin
+    fun tankDriveWithFeedforwardPID(leftVelocitySetpoint: Double, rightVelocitySetpoint: Double) {
+        leftMotor.setVoltage(feedforward.calculate(leftVelocitySetpoint)
+            + leftPID.calculate(leftEncoder.rate, leftVelocitySetpoint))
+        rightMotor.setVoltage(feedforward.calculate(rightVelocitySetpoint)
+            + rightPID.calculate(rightEncoder.rate, rightVelocitySetpoint))
+    }
+  ```
+
 
   ```c++
   void TankDriveWithFeedforwardPID(units::meters_per_second_t leftVelocitySetpoint,
