@@ -75,7 +75,7 @@ def get_blocks_from_rst_file(file: str) -> list[CodeBlock]:
             else:
                 if line.startswith(" ") or line.startswith("\t"):
                     lang = re.search(
-                        "(`{3}|:language: )(java|python|c\\+\\+)", line.lower()
+                        "(`{3}|:language: )(java|python|c\\+\\+|kotlin)", line.lower()
                     )
                     if lang is not None:
                         langs.append(lang.group(2))
