@@ -27,6 +27,17 @@ The WPILib ``Debouncer`` can be configured in three different modes:
   }
   ```
 
+  ```kotlin
+  // Initializes a DigitalInput on DIO 0
+  val input = DigitalInput(0)
+    // Creates a Debouncer in "both" mode.
+  val debouncer = Debouncer(0.1, Debouncer.DebounceType.kBoth)
+    // So if currently false the signal must go true for at least .1 seconds before being read as a True signal.
+  if (debouncer.calculate(input.get())) {
+      // Do something now that the DI is True.
+  }
+  ```
+  
   ```c++
   // Initializes a DigitalInput on DIO 0
   frc::DigitalInput input{0};

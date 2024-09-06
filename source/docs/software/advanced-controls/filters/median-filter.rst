@@ -24,6 +24,11 @@ Creating a ``MedianFilter`` is simple:
   MedianFilter filter = new MedianFilter(5);
   ```
 
+  ```kotlin
+  // Creates a MedianFilter with a window size of 5 samples
+  val filter = MedianFilter(5)
+  ```
+
   ```c++
   // Creates a MedianFilter with a window size of 5 samples
   frc::MedianFilter<double> filter(5);
@@ -44,6 +49,11 @@ Once your filter has been created, using it is easy - simply call the ``calculat
   ```java
   // Calculates the next value of the output
   filter.calculate(input);
+  ```
+
+  ```kotlin
+  // Calculates the next value of the output
+  filter.calculate(input)
   ```
 
   ```c++

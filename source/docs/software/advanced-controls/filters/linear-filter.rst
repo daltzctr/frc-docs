@@ -36,6 +36,13 @@ The ``singlePoleIIR()`` factory method creates a single-pole infinite impulse re
   LinearFilter filter = LinearFilter.singlePoleIIR(0.1, 0.02);
   ```
 
+  ```kotlin
+  // Creates a new Single-Pole IIR filter
+  // Time constant is 0.1 seconds
+  // Period is 0.02 seconds - this is the standard FRC main loop period
+  val filter = LinearFilter.singlePoleIIR(0.1, 0.02)
+  ```
+
   ```c++
   // Creates a new Single-Pole IIR filter
   // Time constant is 0.1 seconds
@@ -70,6 +77,12 @@ The ``movingAverage`` factory method creates a simple flat moving average filter
   LinearFilter filter = LinearFilter.movingAverage(5);
   ```
 
+  ```kotlin
+  // Creates a new flat moving average filter
+  // Average will be taken over the last 5 samples
+  val filter = LinearFilter.movingAverage(5)
+  ```
+
   ```c++
   // Creates a new flat moving average filter
   // Average will be taken over the last 5 samples
@@ -99,6 +112,13 @@ The ``highPass`` factory method creates a simple first-order infinite impulse re
   // Time constant is 0.1 seconds
   // Period is 0.02 seconds - this is the standard FRC main loop period
   LinearFilter filter = LinearFilter.highPass(0.1, 0.02);
+  ```
+
+  ```kotlin
+  // Creates a new high-pass IIR filter
+  // Time constant is 0.1 seconds
+  // Period is 0.02 seconds - this is the standard FRC main loop period
+  val filter = LinearFilter.highPass(0.1, 0.02)
   ```
 
   ```c++
@@ -131,6 +151,11 @@ Once your filter has been created, using it is easy - simply call the ``calculat
   ```java
   // Calculates the next value of the output
   filter.calculate(input);
+  ```
+
+  ```kotlin
+  // Calculates the next value of the output
+  filter.calculate(input)
   ```
 
   ```c++

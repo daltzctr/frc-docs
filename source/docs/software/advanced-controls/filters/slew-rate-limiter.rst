@@ -23,6 +23,11 @@ Creating a SlewRateLimiter is simple:
   SlewRateLimiter filter = new SlewRateLimiter(0.5);
   ```
 
+  ```kotlin
+  // Creates a SlewRateLimiter that limits the rate of change of the signal to 0.5 units per second
+  val filter = SlewRateLimiter(0.5)
+  ```
+
   ```c++
   // Creates a SlewRateLimiter that limits the rate of change of the signal to 0.5 volts per second
   frc::SlewRateLimiter<units::volts> filter{0.5_V / 1_s};
@@ -43,6 +48,11 @@ Once your filter has been created, using it is easy - simply call the ``calculat
   ```java
   // Calculates the next value of the output
   filter.calculate(input);
+  ```
+
+  ```kotlin
+  // Calculates the next value of the output
+  filter.calculate(input)
   ```
 
   ```c++
@@ -68,6 +78,13 @@ A typical use of a SlewRateLimiter is to limit the acceleration of a robot's dri
   drivetrain.arcadeDrive(forward, turn);
     // Slew-rate limits the forward/backward input, limiting forward/backward acceleration
   drivetrain.arcadeDrive(filter.calculate(forward), turn);
+  ```
+    
+  ```kotlin
+  // Ordinary call with no ramping applied
+  drivetrain.arcadeDrive(forward, turn)
+    // Slew-rate limits the forward/backward input, limiting forward/backward acceleration
+  drivetrain.arcadeDrive(filter.calculate(forward), turn)
   ```
 
   ```c++
