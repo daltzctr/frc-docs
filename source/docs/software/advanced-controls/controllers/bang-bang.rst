@@ -79,6 +79,7 @@ Like a PID controller, best results are obtained in conjunction with a :ref:`fee
   // Controls a motor with the output of the BangBang controller and a feedforward
   // Shrinks the feedforward slightly to avoid overspeeding the shooter
   motor.setVoltage(controller.calculate(encoder.rate, setpoint) * 12.0 + 0.9 * feedforward.calculate(setpoint))
+  ```
 
   ```c++
   // Controls a motor with the output of the BangBang controller and a feedforward
